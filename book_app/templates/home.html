@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %} Short Summary - Home {% endblock title %}
+
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+
+    {% if query %}
+        <h3 class='text-muted px-3 text-center pt-4 pb-0'>Showing result for "{{ query }}" </h3>
+    {% endif %}
+
+    {% if all_tags %}
+
+        <section class="embed-responsive py-5 px-md-5 px-sm-4 px-2 ">
+            <div class="row px-3">
+                <div class="col-12">
+                    {% if messages %}
+                        {% for message in messages %}
+                           <div class="alert alert-success alert-dismissible">
+                                {{ message }}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="list-inline list-group-horizontal-sm p-0">
+                        <p class="list-inline-item font-weight-normal lead bg-dark text-white pt-1 pb-2 px-3 my-1">Tags</p>
+                        {% for tag in all_tags %}
+                            <a href="{% url 'book:tag_details' tag.tag_slug %}" class="list-inline-item bg-light text-decoration-none my-1 p-2 border all-tags">{{ tag.tag_name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="embed-responsive px-md-5 px-sm-4 px-2 pt-2 pb-5">
+            <div class="row px-3">
+                {% if  request.user.is_authenticated %}
+                    <a class="btn btn-success mx-3" href="{% url 'book:add_book' %}">Add Book</a>
+                {% endif %}
+                <div class="col-md-12 pt-5">
+                    <div class="row">
+                        {% for book in all_books %}
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div class="card border-0" style="background-color:#F5F5F5">
+                                    <a href="{% url 'book:book_details' book.book_slug %}">
+                                        <img src="{{ book.book_image_url }}" class="card-img-top">
+                                    </a>
+                                    <div class="card-body px-0 pt-1">
+                                        <p class="card-title my-0">{{ book.book_title }}</p>
+                                        <p class="card-text text-muted">{{ book.book_author }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% else %}
+        <h2 class='text-muted text-center py-5'>New Summary will be added soon.</h2>      
+    {% endif %}        
+
+
+
+{% endblock content %}

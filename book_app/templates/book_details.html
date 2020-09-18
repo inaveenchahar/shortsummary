@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+    {% block title %} {{ book.book_title }} - Short Summary {% endblock title %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "book_details.css" %}">
+
+    <section class="embed-responsive px-md-3 px-sm-4 px-3 py-5">
+        <div class="row ">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="py-3 py-md-3 px-3 px-md-5" style="background-color: white; border: lightgray solid 1px">
+                    <h1 class="book-heading">{{ book.book_title }}</h1>
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-warning float-right" href="{% url 'book:edit_book' book.book_slug %}">Edit</a>
+                    {% endif %}
+                    <p class="text-muted font-italic">{{ book.book_author }}</p>
+
+                    <div class="other-information" style="color: deepskyblue">
+                        <span><i class="fa fa-calendar text-dark"></i>&nbsp;{{ book.book_publish_on | date }}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="fa fa-user text-dark"></i>&nbsp;{{ book.added_by.first_name }} {{ book.added_by.last_name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="fa fa-tags text-dark"></i>
+                            {% for tags in book.tag.all %}
+                                <a style="color: deepskyblue" href="{% url 'book:tag_details' tags.tag_slug %}">{{ tags }}, </a>
+                            {% endfor %}
+                        </span>&nbsp;&nbsp;
+                    </div>
+
+                    <p class="pt-4 book-summary">{{ book.book_summary | safe }}</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

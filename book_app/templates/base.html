@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} {% endblock title %}</title>
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Basic|Gudea|Montserrat:500|Roboto&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+</head>
+<body style="background-color:#F5F5F5">
+
+    <nav class="navbar navbar-expand-lg pt-2 pt-md-1 pb-2 pb-md-3 " style="background-color: deepskyblue; color: white">
+        <a class="navbar-brand text-white px-2 px-md-4" href="{% url 'book:home' %}">Short Summary</a>
+        <button type="button" data-toggle="collapse" data-target="#navbarTarget" class="btn navbar-toggler border-0">
+            <span><i class="fa fa-bars hamburger" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse ml-lg-5" id="navbarTarget">
+            <ul class="navbar-nav mr-auto ml-lg-1 ml-md-2">
+                <li class="nav-item px-2 px-md-1 px-lg-2">
+                    <a href="{% url 'book:home' %}" class="nav-link">Library</a>
+                </li>
+                <li class="nav-item px-2 px-md-1 px-lg-1">
+                    <a href="{% url 'book:who_why' %}" class="nav-link">Who & Why ?</a>
+                </li>
+                <li class="nav-item px-2 px-md-1 px-lg-1">
+                    <a href="{% url 'book:suggestion' %}" class="nav-link">Suggestions!</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item px-2 px-md-1 px-lg-1">
+                        <a href="{% url 'book:logout' %}" class="nav-link text-danger">Logout</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <form class="form-inline pr-2 pl-2 pl-md-2 mt-2 form-group" method="GET" action="{% url 'book:home' %}">
+                <div class="input-group">
+                    <input class="form-control rounded" placeholder="Book Title" type="search" name="q" value="{{ request.GET.q }}" aria-label="Search">
+                    <button class="btn btn-dark mx-2" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+
+{% block content %}
+{% endblock content %}
+
+
+    
+
+
+    <footer class="py-5 mt-5 px-3 px-md-5 text-white" style="background-color: deepskyblue">
+        <div class="row px-0 px-md-3 py-3">
+            <div class="col-lg-3 offset-lg-1 col-md-4 col-sm-6 pb-4">
+                <h3 class="pb-2">Menu</h3>
+                <a href="{% url 'book:home' %}" class="text-dark d-block py-2">Library
+                </a>
+                <a href="{% url 'book:suggestion' %}" class="text-dark d-block py-1">
+                    Suggest a book
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                <h3 class="pb-2">Reach Me</h3>
+                <a href="https://www.instagram.com/magicalman78/" class="text-dark d-block py-2">
+                     <i class="fa fa-instagram" aria-hidden="true"></i> Instagram
+                </a>
+                <a href="mailto:naveenchahar696@gmail.com" class="text-dark d-block py-2">
+                     <i class="fa fa-envelope" aria-hidden="true"></i> Email
+                </a>
+                 <a href="https://www.facebook.com/magicalman78" class="text-dark d-block py-2">
+                     <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+                <h3 class="pb-2">Quote about reading</h3>
+                <p class="text-dark py-2">“A reader lives a thousand lives before he dies. The man who never reads lives only one.” –George R R Martin</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

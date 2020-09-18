@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}  Add book - Short Summary {% endblock title %}
+
+{% block content %}
+
+	
+    {{ bookAdd.media }}
+    <section  class='py-5  px-3'>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 bg-white">
+                <div class='px-5 pb-5 pt-4'>
+                    <h2 class='text-center'>Add New Book</h2>
+                    <form class="" method="post" action="{% url 'book:add_book' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ bookAdd.as_p }}
+                        <button type='submit' class='btn btn-primary btn-block'>Add Summary</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock content %}

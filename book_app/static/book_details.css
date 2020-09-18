@@ -1,0 +1,24 @@
+.book-heading{
+	font-family: 'Basic', sans-serif;
+}
+
+
+.book-summary, p, li{
+	font-size: 22px;
+	font-family: 'Gudea', sans-serif;
+
+}
+
+@media only screen and (min-width: 992px) {
+    .book-summary, p, li{
+	font-size: 22px;
+	font-family: 'Gudea', sans-serif;
+	}
+}
+
+@media only screen and (max-width: 568px) {
+    .book-summary, p, li{
+	font-size: 21px;
+	font-family: 'Gudea', sans-serif;
+	}
+}

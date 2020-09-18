@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Edit - Short Summary {% endblock title %}
+
+{% block content %}
+    {% load static %}
+
+	
+    {{ bookEdit.media }}
+    <section class="py-5">
+        <div class="container">
+            <h2 class="pb-3">Edit Book Information</h2>
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ bookEdit.as_p }}
+                <button type='submit' class='btn btn-primary'>Edit Summary</button>
+            </form>
+        </div>
+    </section>
+
+
+{% endblock content %}
