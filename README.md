@@ -19,7 +19,7 @@ Contains two directories:
 ## Step1:
 Open the terminal in the directory where you want to download/clone the project. Run
 ``` 
-git clone https://gitlab.com/alwayz/Serefe.git
+git clone https://github.com/inaveenchahar/shortsummary.git
 ```
 
 # GUIDE TO USE THE PROJECT
@@ -35,7 +35,7 @@ source env/bin/activate
 ```
 ## Step2: Change into project directory 
 ``` 
-cd Serefe
+cd shortsummary
 ```
 
 ## Step3: Set up the system requirements
